@@ -38,6 +38,12 @@ _logger = logging.getLogger(__name__)
 # Python scripts/interactive interpreter, e.g. via
 # `from modeltrack.skeleton import fib`,
 # when using this Python module as a library.
+class WavAudioLoader:
+    def __init__(self, model_name):
+        self.model_name = model_name
+
+    def attributes(self):
+        return self.model_name
 
 
 def fib(n):

@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* Adam VanEgdom <adam.vanegdom@gmail.com>
+* Adam VanEgdom <adam.vanegdom@neurotrack.com>
