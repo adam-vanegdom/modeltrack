@@ -16,7 +16,7 @@ def setup_logging(log_dir):
     console_handler.setFormatter(Formatter(log_console_format))
 
     exp_file_handler = RotatingFileHandler(
-        "{}.log".format(log_dir), maxBytes=10 ** 6, backupCount=5
+        "{}training_log.log".format(log_dir), maxBytes=10 ** 6, backupCount=5
     )
     exp_file_handler.setLevel(logging.DEBUG)
     exp_file_handler.setFormatter(Formatter(log_file_format))
