@@ -6,7 +6,7 @@ Tool to track all PyTorch model config and architecture and prepare training sum
 ***************
 Usage Guide
 ***************
-The following will explain how to use the install the tool to your environment, and use the tool within a Jupyter Notebook 
+The following will explain how to install the tool to your environment, and use the tool within a Jupyter Notebook 
 
 Installation
 """""""""""""""""
@@ -30,7 +30,7 @@ After importing the experiment module you will be able to create a new tracker f
 
    tracker = exp.ModelTracker('model-name', config={"max_epochs":100})
 
-When instantiating the new ModelTracker, you must pass in the name of the experiment being run as well as the model configuration. Optionally, you can pass a directory to specify where the tracking output should be stored. The following 
+When instantiating the new ModelTracker, you must pass in the name of the experiment being run as well as the model configuration. Optionally, you can pass a directory to ``root_dir`` to specify where the tracking output should be stored. The following 
 configuration variables must be set, along with any other model-specific configuration:
 
 ::
