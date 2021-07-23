@@ -121,11 +121,11 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
     pdf.set_font("Helvetica", "", 12)
     pdf.cell(-130)
     for i in range(0, len(train_stats["train_loss"])):
-        pdf.cell(40, 8, "%s" % (i + 1), 1, 0, "C")
-        pdf.cell(30, 8, "%s" % (train_stats["train_loss"][i]), 1, 0, "C")
-        pdf.cell(30, 8, "%s" % (train_stats["test_loss"][i]), 1, 0, "C")
-        pdf.cell(30, 8, "%s" % (train_stats["train_acc"][i]), 1, 0, "C")
-        pdf.cell(30, 8, "%s" % (train_stats["test_acc"][i]), 1, 2, "C")
+        pdf.cell(40, 8, "{}".format((i + 1)), 1, 0, "C")
+        pdf.cell(30, 8, "{:.3f}".format((train_stats["train_loss"][i])), 1, 0, "C")
+        pdf.cell(30, 8, "{:.3f}".format((train_stats["test_loss"][i])), 1, 0, "C")
+        pdf.cell(30, 8, "{:.3f}".format((train_stats["train_acc"][i])), 1, 0, "C")
+        pdf.cell(30, 8, "{:.3f}".format((train_stats["test_acc"][i])), 1, 2, "C")
         pdf.cell(-130)
     pdf.cell(90, 3, "", 0, 2)
 
