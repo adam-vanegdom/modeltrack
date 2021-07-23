@@ -95,7 +95,7 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
     acc = train_stats["test_acc"]
 
     pdf.set_text_color(255, 96, 80)
-    pdf.cell(35, 6, "Best Loss:", 0, 0)4
+    pdf.cell(35, 6, "Best Loss:", 0, 0)
     pdf.cell(
         45, 6, "{:.3f} (Epoch {})".format(min(loss), loss.index(min(loss)) + 1), 0, 0
     )
