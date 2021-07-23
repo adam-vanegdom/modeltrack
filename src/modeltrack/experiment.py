@@ -115,7 +115,7 @@ class ModelTracker:
     def finish_training(self, model=None):
         """
         Save the training parameters for review and produce training report
-        :param model:  current nn.Module model is use at end of training
+        :param model:  current nn.Module model being used at end of training
         """
         self.logger.info("Training has ended...")
 
