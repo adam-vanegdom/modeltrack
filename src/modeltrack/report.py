@@ -95,13 +95,15 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
     acc = train_stats["test_acc"]
 
     pdf.set_text_color(255, 96, 80)
-    pdf.cell(35, 6, "Best Loss:", 0, 0)
-    pdf.cell(45, 6, "{:.3f} (Epoch {})".format(min(loss), loss.index(min(loss))), 0, 0)
+    pdf.cell(35, 6, "Best Loss:", 0, 0)4
+    pdf.cell(
+        45, 6, "{:.3f} (Epoch {})".format(min(loss), loss.index(min(loss)) + 1), 0, 0
+    )
     pdf.cell(60, 6, "Training Duration:", 0, 0)
     pdf.cell(30, 6, "{:.3f} (s)".format(train_stats["total_dur"]), 0, 2)
     pdf.cell(-140)
     pdf.cell(35, 6, f"Best Accuracy:", 0, 0)
-    pdf.cell(45, 6, "{:.3f} (Epoch {})".format(max(acc), acc.index(max(acc))), 0, 0)
+    pdf.cell(45, 6, "{:.3f} (Epoch {})".format(max(acc), acc.index(max(acc)) + 1), 0, 0)
     pdf.cell(60, 6, "Average Epoch Duration:", 0, 0)
     pdf.cell(
         30,
