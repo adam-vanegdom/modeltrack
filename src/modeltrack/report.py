@@ -40,6 +40,7 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
     pdf = FPDF()
+    pdf.set_title("training_summary_{}_{}".format(model_name.lower(), dt_string))
     pdf.add_page()
     pdf.set_xy(0, 10)
     pdf.set_font("Helvetica", "BI", 16)
@@ -157,4 +158,10 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
         pdf.cell(-130)
     pdf.cell(90, 3, "", 0, 2)
 
-    pdf.output(os.path.join(os.path.dirname(img_path), "training_summary.pdf"), "F")
+    pdf.output(
+        os.path.join(
+            os.path.dirname(img_path),
+            "training_summary_{}.pdf".format(model_name.lower()),
+        ),
+        "F",
+    )

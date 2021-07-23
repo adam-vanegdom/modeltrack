@@ -6,13 +6,13 @@ import time
 
 def main():
     config = {
-        "description": "Augmenting the training dataset using synonym replacement only",
-        "cuda": True,
-        "seed": 20,
+        # "description": "Augmenting the training dataset using synonym replacement only",
+        # "cuda": True,
+        # "seed": 20,
         "batch_size": 32,
         "learning_rate": 1e-4,
         "max_epochs": 10,
-        "overwrite": False,
+        "overwrite": True,
     }
 
     sample = ModelTracker("test-model", config=config)

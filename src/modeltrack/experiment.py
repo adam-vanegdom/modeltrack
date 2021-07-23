@@ -70,7 +70,6 @@ class ModelTracker:
         :param test_loss:   training accuracy of single
         :param train_acc:   testing/validation loss of single epoch
         :param test_acc:    testing/validation accuracy of single epoch
-        :return:
         """
         self.train_stats["train_loss"].append(train_loss)
         self.train_stats["test_loss"].append(test_loss)
@@ -113,9 +112,10 @@ class ModelTracker:
             os.path.join(self.config.check_dir, "model_checkpoint.pt.tar"),
         )
 
-    def finish_training(self):
+    def finish_training(self, model=None):
         """
         Save the training parameters for review and produce training report
+        :param model:  current nn.Module model is use at end of training
         """
         self.logger.info("Training has ended...")
 
@@ -138,6 +138,9 @@ class ModelTracker:
             self.train_stats["train_loss"],
             self.train_stats["test_loss"],
         )
+
+        if model is not None:
+            self.model = model
 
         # generate training summary report
         produce_summary_pdf(
