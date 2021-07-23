@@ -110,7 +110,7 @@ class ModelTracker:
                 "optimizer_state_dict": optimizer.state_dict(),
                 "loss": loss,
             },
-            os.path.join(self.config.ckeck_dir, "model_checkpoint.pt.tar"),
+            os.path.join(self.config.check_dir, "model_checkpoint.pt.tar"),
         )
 
     def finish_training(self):
