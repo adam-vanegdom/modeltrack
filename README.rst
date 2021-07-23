@@ -73,8 +73,10 @@ The ModelTracker object has four functions that are useful during training:
       
             :model: [*Default=None*] current nn.Module model being used at end of training 
 
- 
+Examples
+"""""""""""""""""
 
+Please see ``demo_model.ipynb`` to see how the tool is used in a Jupyer Notebook or ``sample.py`` to see the tool used in a python script
 
 
 
