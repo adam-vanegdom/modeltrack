@@ -11,8 +11,8 @@ def main():
         "seed": 20,
         "batch_size": 32,
         "learning_rate": 1e-4,
-        "max_epochs": 100,
-        "overwrite": True,
+        "max_epochs": 10,
+        "overwrite": False,
     }
 
     sample = ModelTracker("test-model", config=config)
@@ -22,7 +22,7 @@ def main():
         sample.save_epoch_stats(
             randint(0, 100), randint(0, 100), randint(0, 100), randint(0, 100)
         )
-        # time.sleep(5)
+        # time.sleep(2)
     sample.finish_training()
 
 

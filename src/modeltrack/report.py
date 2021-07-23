@@ -5,6 +5,13 @@ from datetime import datetime
 
 
 def plot_loss(path, current_epoch, train_loss, test_loss):
+    """
+    Plot the training and testing loss on same axis to produce training curves
+    :param path:            path to directory where the plot should be saved
+    :param current_epoch:   current epoch count at time of save
+    :param train_loss:      training loss of all epochs run
+    :param test_loss:       testing/validation loss of all epochs run
+    """
     plotname = os.path.join(path, "training_loss_curve.png")
     fig = plt.figure()
     plt.axes().set_facecolor("#fbc9bc")
@@ -20,6 +27,14 @@ def plot_loss(path, current_epoch, train_loss, test_loss):
 
 
 def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_stats):
+    """
+    Produce a summary pdf containing configuration used, training curve,
+    model architecture and epoch training summary
+    :param model_name:    name of current experiment/model being run
+    :param hyperparams:   dict of all the model configuration
+    :param model_arch:    nn.Module object to print
+    :param train_stats:   Dictionary containing training/test loss and accuracy as well as total duration
+    """
     # datetime object containing current date and time
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
@@ -54,7 +69,14 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
     pdf.set_text_color(255, 96, 80)
     pdf.set_font("Helvetica", "", 12)
     pdf.cell(-30)
-    attributes = ["model_dir", "log_dir", "current_epoch", "overwrite", "exp_name"]
+    attributes = [
+        "model_dir",
+        "log_dir",
+        "check_dir",
+        "current_epoch",
+        "overwrite",
+        "exp_name",
+    ]
     for i, val in enumerate(hyperparams):
         if val not in attributes:
             pdf.cell(30, 10, "%s" % (val), 1, 0)
@@ -78,9 +100,15 @@ def produce_summary_pdf(model_name, img_path, hyperparams, model_arch, train_sta
     pdf.cell(30, 6, "{:.3f} (s)".format(train_stats["total_dur"]), 0, 2)
     pdf.cell(-140)
     pdf.cell(35, 6, f"Best Accuracy:", 0, 0)
-    pdf.cell(45, 6, "{:.3f} (Epoch {})".format(min(acc), acc.index(min(acc))), 0, 0)
+    pdf.cell(45, 6, "{:.3f} (Epoch {})".format(max(acc), acc.index(max(acc))), 0, 0)
     pdf.cell(60, 6, "Average Epoch Duration:", 0, 0)
-    pdf.cell(30, 6, "{:.3f} (s)".format(train_stats["total_dur"]), 0, 2)
+    pdf.cell(
+        30,
+        6,
+        "{:.3f} (s)".format(train_stats["total_dur"] / hyperparams["current_epoch"]),
+        0,
+        2,
+    )
     pdf.cell(-140)
     pdf.cell(90, 3, "", 0, 2)
 
