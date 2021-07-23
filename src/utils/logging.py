@@ -24,4 +24,19 @@ def setup_logging(log_dir):
     main_logger.addHandler(console_handler)
     main_logger.addHandler(exp_file_handler)
 
-    return logging.getLogger("Experiment")
+    return main_logger
+
+
+def remove_logging(log_dir):
+    # Main logger
+    main_logger = logging.getLogger()
+    main_logger.setLevel(logging.INFO)
+
+    console_handler = logging.StreamHandler()
+
+    exp_file_handler = RotatingFileHandler(
+        "{}training_log.log".format(log_dir), maxBytes=10 ** 6, backupCount=5
+    )
+
+    main_logger.removeHandler(console_handler)
+    main_logger.removeHandler(exp_file_handler)

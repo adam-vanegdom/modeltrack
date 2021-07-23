@@ -4,15 +4,14 @@ import json
 import time
 import torch
 from utils.config import process_config, update_config
-from utils.logging import setup_logging
+from utils.logging import setup_logging, remove_logging
 from modeltrack.report import plot_loss, produce_summary_pdf
 
 
 # Python API Functions
 class ModelTracker:
     def __init__(self, exp_name, root_dir=None, config=None, model=None):
-        self.exp_name = exp_name
-        self.config = process_config(exp_name, root_dir, config)
+        self.config, self.exp_name = process_config(exp_name, root_dir, config)
         self.logger = setup_logging(self.config.log_dir)
         self.model = model
 
@@ -120,6 +119,9 @@ class ModelTracker:
         # stop timer and record the value for report
         end = time.time()
         self.train_stats["total_dur"] = end - self.start
+        self.train_stats["avg_dur"] = (
+            self.train_stats["total_dur"] / self.config.current_epoch
+        )
 
         # save the current hyperparameters used for testing
         hyper_path = os.path.join(self.config.model_dir, "hyperparams.json")
@@ -140,4 +142,7 @@ class ModelTracker:
             os.path.join(self.config.model_dir, "training_loss_curve.png"),
             self.config,
             self.model,
+            self.train_stats,
         )
+
+        remove_logging(self.config.log_dir)

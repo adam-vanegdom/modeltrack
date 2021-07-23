@@ -35,16 +35,17 @@ def process_config(exp_name, root, config):
     :return: config object(namespace)
     """
     config, _ = get_config_from_json(config)
-    config.exp_name = exp_name
 
     if root is None:
         root = os.path.join(os.getenv("HOME"), ".modeltrack")
 
     config.model_dir, config.log_dir = create_unique_dir(
-        root, config.exp_name, config.overwrite
+        root, exp_name, config.overwrite
     )
 
-    return config
+    exp_name = os.path.basename(os.path.normpath(config.model_dir))
+
+    return config, exp_name
 
 
 def create_unique_dir(path, name, overwrite):
